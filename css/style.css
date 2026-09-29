@@ -1,0 +1,43 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    height: 10%;
+    background-color: aqua;
+}
+
+aside {
+    float: left;
+    width: 30%;
+    height: 80%;
+    background-color: lightblue;
+}
+
+main {
+    color: white;
+    float: left;
+    height: 80%;
+    width: 70%;
+    background-color: darkblue;
+}
+
+footer {
+    clear: both;
+    height: 10%;
+    width: 100%;
+    background-color: lightcyan;
+}
+
+input {
+    text-align: center;
+}
