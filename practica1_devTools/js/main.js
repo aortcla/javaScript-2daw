@@ -5,6 +5,11 @@ const btSumar = document.getElementById("btSumar");
 
 let num1, num2;
 
+console.log("Ejemplo de console.log");
+console.error("Ejemplo de console.error");
+console.table("Ejemplo de console.table");
+console.warn("Ejemplo de console.warn");
+
 btSumar.onclick = suma;
 
 
