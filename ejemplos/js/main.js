@@ -10,12 +10,16 @@ btSumar.onclick = doSuma;
 function doSuma(){
     let a = parseFloat(in1.value);
     let b = parseFloat(in2.value);
-    if(typeof a == "number" && typeof b == "number"){ 
-        h11.innerHTML += (a +b);
+    if((typeof a == "number" && typeof b == "number") && (a >= 0 && b >= 0) && (a != "" && b != "")){
+        h11.innerHTML += (a + b);
         in1.value = "0";
         in2.value = "0";
-    }else{
-        h11.innerHTML = "Valores no validos para hacer la suma";
+    }else if (a < 0 || b < 0){
+        throw new Error("El numero es negativo");
+    }else if(a == "" || b == ""){
+        throw new Error("El numero está vacio")
+    }else if(isNaN(a) || isNaN(b)){
+        throw new Error("No tiene valor numerico");
     }
 }
 
@@ -93,7 +97,3 @@ function doSuma(){
 //     }
 
 // })
-
-function suma(num1, num2){
-    return num1 + num2;
-}
