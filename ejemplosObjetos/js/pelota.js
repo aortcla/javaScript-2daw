@@ -7,4 +7,4 @@ let intervalo = setInterval(function() {
     let izq = parseInt(ball.style.left.substring(0, ball.style.left.length-2));
     if(izq < (screen.width - 100))
         ball.style.left = (izq + 10) + "px";
-}, 100);
+}, 10);
