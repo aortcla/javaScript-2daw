@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Socios - Club Deportivo</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/data.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/main.js" defer ></script>
+</head>
+<body>
+
+    <!-- 3.1 CABECERA -->
+    <header class="app-header">
+        <div class="header-title">
+            <h1>Club Deportivo</h1>
+            <p>Gestión de Socios</p>
+        </div>
+        <div class="header-datetime">
+            <span id="current-date"></span>
+            <span id="current-time" class="time-badge"</span>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+
+        <!-- Barra de navegación rápida a Alta y Estadísticas -->
+        <nav class="main-nav-bar">
+            <a href="./html/alta.html" class="btn-primary">➕ Dar de Alta Socio</a>
+            <a href="./html/estadistica.html" class="btn-secondary">📊 Ver Estadísticas</a>
+        </nav>
+
+        <!-- 3.2 LISTADO DE SOCIOS -->
+        <section class="card members-section" id="members-section">
+            <div class="section-header">
+                <h2>Listado de Socios</h2>
+                <button id="btn-fullscreen" class="btn-secondary" type="button">Pantalla Completa</button>
+            </div>
+
+            <!-- Controles de búsqueda general, filtro y orden -->
+            <div class="filters-bar">
+                <div class="input-group">
+                    <label for="search-input">Buscador general (Nombre, Apellidos, Email):</label>
+                    <input type="text" id="search-input" placeholder="Escribe para buscar (mín. 2 carac.)...">
+                </div>
+                <div class="input-group">
+                    <label for="activity-filter">Filtro de Actividad:</label>
+                    <select id="activity-filter">
+                        <option value="todos">Todas las actividades</option>
+                        <option value="natacion">Natación</option>
+                        <option value="yoga">Yoga</option>
+                        <option value="padel">Pádel</option>
+                        <option value="musculacion">Musculación</option>
+                        <option value="spinning">Spinning</option>
+                        <option value="pilates">Pilates</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="sort-select">Ordenar tabla:</label>
+                    <select id="sort-select">
+                        <option value="nombre">Nombre</option>
+                        <option value="apellidos">Apellidos</option>
+                        <option value="jovenes">Más jóvenes primero</option>
+                        <option value="antiguos">Más antiguos primero</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tabla principal -->
+            <div class="table-responsive">
+                <table class="members-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Actividades</th>
+                            <th>Edad</th>
+                            <th>Cuota</th>
+                        </tr>
+                    </thead>
+                    <tbody id="members-tbody">
+                        
+                    </tbody>
+                </table>
+                <div id="no-results-msg" class="no-results hidden">No hay socios que coincidan.</div>
+            </div>
+        </section>
+
+        <!-- 3.3 FICHA DE SOCIO (Buscador específico por DNI) -->
+        <section class="card member-detail-section" id="ficha-section">
+            <h2>Consultar Ficha de Socio por DNI</h2>
+            <div class="input-group" style="margin-bottom: 15px; max-width: 400px;">
+                <label for="dni-search-input">Introduce el DNI del socio:</label>
+                <div class="search-dni-wrapper">
+                    <input type="text" id="dni-search-input" placeholder="Ej: 12345678Z">
+                    <button type="button" id="btn-search-dni" class="btn-primary">Buscar Ficha</button>
+                </div>
+            </div>
+
+            <!-- Área donde se renderizará la ficha con JS -->
+            <div id="member-card-result" class="member-card-content">
+                <p class="placeholder-text">Introduce un DNI para ver la ficha detallada (datos completos, teléfono agrupado, antigüedad, cumpleaños, etc.).</p>
+            </div>
+            
+            <!-- Mensaje de error si no existe el DNI -->
+            <div id="dni-error-msg" class="error-msg hidden">El DNI no corresponde a ningún socio.</div>
+        </section>
+
+    </main>
+
+</body>
+</html>

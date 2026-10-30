@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas - Club Deportivo</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-title">
+            <h1>Club Deportivo</h1>
+            <p>Estadísticas Generales</p>
+        </div>
+        <div>
+            <a href="../index.html" class="btn-secondary">← Volver al Listado</a>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- 3.5 ESTADÍSTICAS -->
+        <section class="card stats-section">
+            <h2>Métricas del Club</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Socios</span>
+                    <span class="stat-value" id="stat-total">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Ingresos Mensuales</span>
+                    <span class="stat-value" id="stat-income">0.00 €</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Cuota Media</span>
+                    <span class="stat-value" id="stat-avg-fee">0.00 €</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Edad (Media / Mín / Máx)</span>
+                    <span class="stat-value" id="stat-ages">0 / 0 / 0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Actividad Más Popular</span>
+                    <span class="stat-value" id="stat-popular-activity">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">¿Menores de edad?</span>
+                    <span class="stat-value" id="stat-minors">No</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">¿Todos con actividad?</span>
+                    <span class="stat-value" id="stat-all-active">Sí</span>
+                </div>
+            </div>
+            <div class="veterans-box" style="margin-top: 20px;">
+                <span class="stat-label">Top 3 Socios Más Veteranos:</span>
+                <ul id="stat-veterans-list" class="mini-list">
+                    <li>-</li>
+                </ul>
+                <span class="stat-label" style="margin-top: 12px; display: block;">Dominios de correo:</span>
+                <p id="stat-domains" class="domains-text">-</p>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

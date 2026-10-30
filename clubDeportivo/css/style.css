@@ -1,0 +1,369 @@
+:root {
+    --primary-color: #4f46e5;      /* Índigo moderno */
+    --primary-hover: #4338ca;
+    --accent-color: #06b6d4;       /* Turquesa vibrante para destacar */
+    --accent-hover: #0891b2;
+    --success-color: #10b981;      /* Verde esmeralda */
+    --bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #fdf4ff 100%);
+    --card-bg: #ffffff;
+    --text-main: #0f172a;          /* Slate muy oscuro para máxima legibilidad */
+    --text-muted: #475569;         /* Slate intermedio */
+    --border-color: #e2e8f0;
+    --error-color: #ef4444;
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 10px 15px -3px rgba(79, 70, 229, 0.15), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    padding: 24px;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Cabecera con toque de color */
+.app-header {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    padding: 24px 32px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.header-title h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.header-title p {
+    color: #e0e7ff;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.header-datetime {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+#current-date {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.time-badge {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #a5f3fc;
+    font-weight: 700;
+}
+
+/* Contenedor general */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Barra de navegación superior unificada */
+.main-nav-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Botones unificados, coloridos y profesionales */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #6366f1 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-hover) 0%, #4f46e5 100%);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #0891b2 0%, #0284c7 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.25);
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px;
+    font-size: 1rem;
+}
+
+/* Barra de filtros y controles alineados perfectamente */
+.filters-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    align-items: end; /* <-- Alinea los inputs verticalmente por la base */
+    margin-bottom: 20px;
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-group input, .input-group select {
+    padding: 10px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    background: #fff;
+    color: var(--text-main);
+    transition: all 0.2s;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Tabla de socios estilizada */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin-bottom: 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.members-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    background: white;
+}
+
+.members-table th, .members-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.members-table th {
+    background-color: #f1f5f9;
+    font-weight: 700;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.members-table tr:hover {
+    background-color: #f8fafc;
+}
+
+.user-id-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Avatar con colores vivos aleatorios/gradientes */
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(236, 72, 153, 0.3);
+}
+
+.id-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.badge {
+    background-color: #e0e7ff;
+    color: #3730a3;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: 2px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-style: italic;
+    background: white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Formularios y Grupos de Actividades */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    background: #f8fafc;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border-color);
+}
+
+.checkbox-group label {
+    font-weight: 500;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    accent-color: var(--primary-color);
+    width: 16px;
+    height: 16px;
+}
+
+/* Alertas y errores */
+.error-msg {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.field-error-text {
+    color: var(--error-color);
+    font-size: 0.75rem;
+    min-height: 16px;
+    font-weight: 500;
+}
+
+.success-alert {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #a7f3d0;
+}
+
+.input-error {
+    border-color: var(--error-color) !important;
+    background-color: #fff5f5 !important;
+}

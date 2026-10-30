@@ -1,0 +1,122 @@
+const socios = [
+    {
+        id: "SOC-0001",
+        nombre: "Natalia",
+        apellidos: "Gomez Lopez",
+        dni: "25619590M",
+        email: "natalia.gomez@gmail.es",
+        telefono: "640156383",
+        fechaNacimiento: "2005-03-23",
+        fechaAlta: "2023-07-02",
+        actividades: ["natación", "yoga"],
+        cuota: 40
+    },
+    {
+        id: "SOC-0002",
+        nombre: "Lucía",
+        apellidos: "Martín Ruiz",
+        dni: "12345678Z",
+        email: "lucia.martin@correo.es",
+        telefono: "612345678",
+        fechaNacimiento: "1995-03-14",
+        fechaAlta: "2019-09-02",
+        actividades: ["natación", "yoga"],
+        cuota: 35
+    },
+    {
+        id: "SOC-0003",
+        nombre: "Álvaro",
+        apellidos: "García Gómez",
+        dni: "87654321X",
+        email: "alvaro.garcia@correo.es",
+        telefono: "623456789",
+        fechaNacimiento: "1990-07-22",
+        fechaAlta: "2020-01-15",
+        actividades: ["pádel", "musculación"],
+        cuota: 40
+    },
+    {
+        id: "SOC-0004",
+        nombre: "María José",
+        apellidos: "Pérez Soria",
+        dni: "45678912K",
+        email: "mariajose.perez@correo.es",
+        telefono: "634567890",
+        fechaNacimiento: "2002-11-05",
+        fechaAlta: "2021-05-10",
+        actividades: ["spinning", "pilates"],
+        cuota: 45
+    },
+    {
+        id: "SOC-0005",
+        nombre: "Carlos",
+        apellidos: "López Fernández",
+        dni: "78912345H",
+        email: "carlos.lopez@correo.es",
+        telefono: "645678901",
+        fechaNacimiento: "1988-02-19",
+        fechaAlta: "2018-11-20",
+        actividades: ["natación", "musculación"],
+        cuota: 50
+    },
+    {
+        id: "SOC-0006",
+        nombre: "Sofía",
+        apellidos: "Rodríguez Gil",
+        dni: "32165498L",
+        email: "sofia.rodriguez@correo.es",
+        telefono: "656789012",
+        fechaNacimiento: "1997-09-30",
+        fechaAlta: "2022-03-01",
+        actividades: ["yoga", "pilates"],
+        cuota: 35
+    },
+    {
+        id: "SOC-0007",
+        nombre: "Alejandro",
+        apellidos: "Sánchez Blanco",
+        dni: "65432198T",
+        email: "alejandro.sanchez@correo.es",
+        telefono: "667890123",
+        fechaNacimiento: "2005-04-12",
+        fechaAlta: "2023-06-14",
+        actividades: ["pádel"],
+        cuota: 30
+    },
+    {
+        id: "SOC-0008",
+        nombre: "Elena",
+        apellidos: "Moreno Díaz",
+        dni: "14725836M",
+        email: "elena.moreno@correo.es",
+        telefono: "678901234",
+        fechaNacimiento: "1993-12-08",
+        fechaAlta: "2017-08-25",
+        actividades: ["spinning", "natación", "yoga"],
+        cuota: 60
+    },
+    {
+        id: "SOC-0009",
+        nombre: "David",
+        apellidos: "Romero Navarro",
+        dni: "96385274R",
+        email: "david.romero@correo.es",
+        telefono: "689012345",
+        fechaNacimiento: "2000-06-18",
+        fechaAlta: "2021-02-11",
+        actividades: ["musculación"],
+        cuota: 30
+    },
+    {
+        id: "SOC-0010",
+        nombre: "Carmen",
+        apellidos: "Jiménez Ruiz",
+        dni: "36925814S",
+        email: "carmen.jimenez@correo.es",
+        telefono: "690123456",
+        fechaNacimiento: "1985-10-27",
+        fechaAlta: "2016-04-05",
+        actividades: ["pilates", "yoga"],
+        cuota: 35
+    }
+];
