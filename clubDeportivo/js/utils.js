@@ -80,7 +80,7 @@ function diaDeHoy(){
 function reloj(){
     let final = new Date();
 
-    hora.innerHTML = final.toLocaleTimeString();
+    return final.toLocaleTimeString();
 }
 
 /**
@@ -100,11 +100,11 @@ function edad(fechaNacimiento){
 /**
  * Funcion que rellena la taba del index con el array de socios de data
  */
-function mostrarSocios(){
+function mostrarSocios(lista = []){
     let cadena = "";
 
 
-    for (const elem of socios) {
+    for (const elem of lista) {
         let iniciales = elem.nombre.charAt(0) + elem.apellidos.charAt(0);
 
         let actividades = "";
@@ -115,6 +115,12 @@ function mostrarSocios(){
 
         let apellidosSeparados = elem.apellidos.split(" ");
         let formatoNombre = elem.nombre +" "+ apellidosSeparados[0]+" "+ apellidosSeparados[1].charAt(0)+".";
+
+        //intento de censurar el correo
+        /* let reCorreo = /^.{2}.[^@]$/;
+
+        let censura = elem.email.match(reCorreo); */
+
 
         cadena += `<tr>
                         <td>
@@ -141,5 +147,25 @@ function mostrarSocios(){
                     </tr>`;
     }
 
-     return cadena;
+    tablaSocios.innerHTML = cadena;
+}
+
+function buscarSocio(){
+    let cadena = inBuscarSocio.value.toLowerCase().trim();
+    let nuevoArray = [];
+
+
+    if(cadena.length < 2){
+        mostrarSocios(socios);
+    }else{
+
+        for (let elem of socios) {
+            if(elem.nombre.toLowerCase().includes(cadena) || elem.apellidos.toLowerCase().includes(cadena) || elem.email.toLowerCase().includes(cadena)){
+                nuevoArray.push(elem);
+            }
+        }
+
+        mostrarSocios(nuevoArray);
+    }
+        
 }
