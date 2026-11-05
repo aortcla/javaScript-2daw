@@ -147,25 +147,34 @@ function mostrarSocios(lista = []){
                     </tr>`;
     }
 
-    tablaSocios.innerHTML = cadena;
+    return cadena;
 }
 
-function buscarSocio(){
+function filtroFinal(){
     let cadena = inBuscarSocio.value.toLowerCase().trim();
     let nuevoArray = [];
 
 
-    if(cadena.length < 2){
-        mostrarSocios(socios);
+    if(cadena.length <= 2){
+       tablaSocios.innerHTML = mostrarSocios(socios);
     }else{
 
         for (let elem of socios) {
-            if(elem.nombre.toLowerCase().includes(cadena) || elem.apellidos.toLowerCase().includes(cadena) || elem.email.toLowerCase().includes(cadena)){
+
+            if(elem.nombre.toLowerCase().includes(cadena) ||
+             elem.apellidos.toLowerCase().includes(cadena) ||
+              elem.email.toLowerCase().includes(cadena)){
                 nuevoArray.push(elem);
             }
         }
 
-        mostrarSocios(nuevoArray);
+        if(nuevoArray.length == 0){
+            tablaSocios.innerHTML = "<p style='color:red'>No hay socios que coincidan</p>";
+        }else{
+            tablaSocios.innerHTML = mostrarSocios(nuevoArray);
+        }
+
+        
     }
         
 }
