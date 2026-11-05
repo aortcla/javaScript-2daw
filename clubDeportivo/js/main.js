@@ -8,3 +8,4 @@ fechaHoy.innerHTML = diaDeHoy();
 setInterval(() => {hora.innerHTML = reloj();},1000);
 tablaSocios.innerHTML = mostrarSocios(socios);
 inBuscarSocio.addEventListener('input', filtroFinal);
+actividades.addEventListener('change', filtroFinal);

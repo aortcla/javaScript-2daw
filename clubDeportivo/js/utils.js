@@ -150,22 +150,74 @@ function mostrarSocios(lista = []){
     return cadena;
 }
 
+/**
+ * Metodo que cambia las tildes por su correspondiente sin tilde
+ * @param {string} texto 
+ * @returns 
+ */
+function sinTildes(texto){
+
+    if(/[áÁ]/.test(texto)){
+        texto = texto.replace(/[áÁ]/gi, "a");
+    }
+
+    if(/[éÉ]/.test(texto)){
+        texto = texto.replace(/[éÉ]/gi, "e");
+    }
+
+    if(/[íÍ]/.test(texto)){
+        texto = texto.replace(/[íÍ]/gi, "i");
+    }
+
+    if(/[óÓ]/.test(texto)){
+        texto = texto.replace(/[óÓ]/gi, "o");
+    }
+
+    if(/[úÚ]/.test(texto)){
+        texto = texto.replace(/[úÚ]/gi, "u");
+    }
+
+    return texto;
+}
+
 function filtroFinal(){
-    let cadena = inBuscarSocio.value.toLowerCase().trim();
+    let cadena =  sinTildes(inBuscarSocio.value.toLowerCase().trim());
+    let actividadSeleccionada = sinTildes(actividades.value.toLowerCase());
     let nuevoArray = [];
 
 
     if(cadena.length <= 2){
-       tablaSocios.innerHTML = mostrarSocios(socios);
+        if(actividadSeleccionada == "todos"){
+            tablaSocios.innerHTML = mostrarSocios(socios);
+        }else{
+            for (let elem of socios){
+
+                for(let act of elem.actividades){
+                    if(actividadSeleccionada == sinTildes(act.toLocaleLowerCase())){
+                        nuevoArray.push(elem);
+                    }
+                }
+                    
+            }
+
+            tablaSocios.innerHTML = mostrarSocios(nuevoArray);
+        }
     }else{
 
         for (let elem of socios) {
 
-            if(elem.nombre.toLowerCase().includes(cadena) ||
-             elem.apellidos.toLowerCase().includes(cadena) ||
-              elem.email.toLowerCase().includes(cadena)){
-                nuevoArray.push(elem);
+            for (const act of elem.actividades) {
+                if((sinTildes(elem.nombre.toLowerCase()).includes(cadena) ||
+                    sinTildes(elem.apellidos.toLowerCase()).includes(cadena) ||
+                    sinTildes(elem.email.toLowerCase()).includes(cadena)) &&
+                    (actividadSeleccionada == sinTildes(act.toLocaleLowerCase()) || actividadSeleccionada == "todos")){
+                
+                        nuevoArray.push(elem);
             }
+            }
+
+            
+            
         }
 
         if(nuevoArray.length == 0){
@@ -174,7 +226,6 @@ function filtroFinal(){
             tablaSocios.innerHTML = mostrarSocios(nuevoArray);
         }
 
-        
     }
         
 }
