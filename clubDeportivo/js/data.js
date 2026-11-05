@@ -1,3 +1,5 @@
+/*Prueba de subida de git desde pc casa*/
+
 const socios = [
     {
         id: "SOC-0001",
