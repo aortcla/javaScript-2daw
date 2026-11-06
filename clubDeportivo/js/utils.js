@@ -184,48 +184,45 @@ function filtroFinal(){
     let cadena =  sinTildes(inBuscarSocio.value.toLowerCase().trim());
     let actividadSeleccionada = sinTildes(actividades.value.toLowerCase());
     let nuevoArray = [];
+    let cadenaActividades = "";
 
-
-    if(cadena.length <= 2){
-        if(actividadSeleccionada == "todos"){
-            tablaSocios.innerHTML = mostrarSocios(socios);
-        }else{
-            for (let elem of socios){
-
-                for(let act of elem.actividades){
-                    if(actividadSeleccionada == sinTildes(act.toLocaleLowerCase())){
-                        nuevoArray.push(elem);
-                    }
-                }
-                    
-            }
-
-            tablaSocios.innerHTML = mostrarSocios(nuevoArray);
+    for (const elem of socios) {
+        cadenaActividades = "";
+        for (const actividadesSocios of elem.actividades) {
+            cadenaActividades += actividadesSocios; 
         }
-    }else{
+        
+        cadenaActividades = sinTildes(cadenaActividades);
 
-        for (let elem of socios) {
-
-            for (const act of elem.actividades) {
-                if((sinTildes(elem.nombre.toLowerCase()).includes(cadena) ||
+        if(cadena <= 2){
+            if(actividadSeleccionada == "todos"){
+                nuevoArray.push(elem);
+            }else if(cadenaActividades.includes(actividadSeleccionada)){
+                nuevoArray.push(elem);
+            }
+        }else{
+            if((sinTildes(elem.nombre.toLowerCase()).includes(cadena) ||
                     sinTildes(elem.apellidos.toLowerCase()).includes(cadena) ||
-                    sinTildes(elem.email.toLowerCase()).includes(cadena)) &&
-                    (actividadSeleccionada == sinTildes(act.toLocaleLowerCase()) || actividadSeleccionada == "todos")){
+                    sinTildes(elem.email.toLowerCase()).includes(cadena))
+                     && (actividadSeleccionada == "todos")){
                 
                         nuevoArray.push(elem);
-            }
-            }
 
-            
-            
+            }else if((sinTildes(elem.nombre.toLowerCase()).includes(cadena) ||
+                    sinTildes(elem.apellidos.toLowerCase()).includes(cadena) ||
+                    sinTildes(elem.email.toLowerCase()).includes(cadena))
+                     && (cadenaActividades.includes(actividadSeleccionada))){
+
+                        nuevoArray.push(elem);
+                     }
+
         }
+    }
 
-        if(nuevoArray.length == 0){
-            tablaSocios.innerHTML = "<p style='color:red'>No hay socios que coincidan</p>";
-        }else{
-            tablaSocios.innerHTML = mostrarSocios(nuevoArray);
-        }
-
+    if(nuevoArray.length == 0){
+        tablaSocios.innerHTML = "<p style=color:red>No se han encontrado socios</p>";
+    }else{
+        tablaSocios.innerHTML = mostrarSocios(nuevoArray);
     }
         
 }
