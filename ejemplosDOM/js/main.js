@@ -63,7 +63,7 @@ document.getElementById("btNuevoPais").onclick = () => {
  * @param string clase
  * 
  */
-function creaNodo(tipo, texto, id, clase){
+function creaNodo(tipo, texto, id){
     let elemento = null;
     if((tipo) && (typeof tipo === "string")){
         elemento = document.createElement(tipo);
@@ -76,9 +76,6 @@ function creaNodo(tipo, texto, id, clase){
 
     if(id != ""){
         elemento.id = id;
-    }
-    if((clase) && (typeof clase === "string")){
-        elemento.className = clase;
     }
 
     return elemento;
@@ -97,4 +94,45 @@ document.getElementById("btBorraPais").onclick = () => {
         //opcionesLista[2].remove();
     }
 
+}
+
+/**************************************************/
+const sections1 = document.getElementsByClassName("section1");
+let enlaceImagen = creaNodo("a", "Cambiar imagen", "");
+enlaceImagen.style = "background-color:#1276af;border-radius:5px;border:1px solid black;cursor:pointer;padding:0.5%;";
+
+let borraAtributo = creaNodo("a", "Borrar atributo", "");
+borraAtributo.style = "background-color:#1276af;border-radius:5px;border:1px solid black;cursor:pointer;padding:0.5%;";
+
+
+if(sections1.length >= 2 ){
+    sections1[1].appendChild(enlaceImagen);
+    sections1[1].appendChild(borraAtributo);
+
+    enlaceImagen.onclick = function () {
+        sections1[1].getElementsByTagName("img")[0].src = "./img/imagen2.webp";
+    }
+
+    borraAtributo.onclick = function () {
+        sections1[1].getElementsByTagName("img")[0].removeAttribute("src");
+    }
+
+}
+
+let inBloquear = creaNodo("input", "", "");
+let btBloquear = creaNodo("button", "Bloquear", "");
+
+if(sections1.length >= 3){
+    sections1[2].appendChild(inBloquear);
+    sections1[2].appendChild(btBloquear);
+
+    btBloquear.onclick = function () {
+        if(btBloquear.innerText == "Bloquear"){
+            sections1[2].getElementsByTagName("input")[0].setAttribute("readonly", "true");
+            btBloquear.innerText = "Desbloquear";
+        }else{
+            sections1[2].getElementsByTagName("input")[0].removeAttribute("readonly");
+            btBloquear.innerText = "Bloquear";
+        }
+    }
 }
