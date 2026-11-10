@@ -136,3 +136,35 @@ if(sections1.length >= 3){
         }
     }
 }
+/**************************************************************************/
+document.getElementById("bDevuelveImpares").onclick = function () {
+    let lista2 = document.querySelectorAll(".paises li");
+    let arrayImpares = new Array();
+
+    for (let paisImpar = 0; paisImpar < lista2.length; paisImpar+=2) {
+        arrayImpares.push(lista2[paisImpar].innerText);
+    }
+
+    console.dir(arrayImpares);
+}
+/************************************************/
+document.getElementById("modoNoche").addEventListener("click", ()=> {
+    document.body.style.backgroundColor = "darkgrey";
+    document.body.style.color = "white";
+    const buttons = document.getElementsByTagName("button");
+
+    for (const btn of buttons) {
+        btn.style.backgroundColor = "darkgray";
+        btn.style.color = "white";
+
+    }
+
+    const links = document.getElementsByTagName("a");
+
+    for (const lk of links) {
+        lk.style.backgroundColor = "brown";
+        lk.style.color = "white";
+
+    }
+
+})
