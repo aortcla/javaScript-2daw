@@ -60,7 +60,6 @@ document.getElementById("btNuevoPais").onclick = () => {
  * @param string tipo
  * @param string text 
  * @param string id 
- * @param string clase
  * 
  */
 function creaNodo(tipo, texto, id){
