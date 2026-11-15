@@ -1,6 +1,10 @@
 var userWindow = null;
 
-let listaSociosActuales = recorreSocios();
+let listaSociosActuales = null;
+
+if(window.opener){
+    listaSociosActuales = window.opener.listaPrincipal;
+}
 
 const errorInsercion = document.getElementById("errorInsercion");
 const nombreNuevoSocio = document.getElementById("reg-nombre");
@@ -10,23 +14,15 @@ const inEmail = document.getElementById("reg-email");
 const inTel = document.getElementById("reg-telefono");
 const inFechaNac = document.getElementById("reg-fnacimiento");
 
+const inCuota = document.getElementById("reg-cuota");
 
-function abreVentana(){
+
+function abreVentanaAlta(){
     if(!userWindow || userWindow.closed){
         userWindow = window.open("./html/alta.html", "_blank", "width=600,height=900,top=200");
     }
 }
 
-/*devuelve el array de los socios*/
-function recorreSocios(){
-    let arraySocios = [];
-
-    for (const elem of socios) {
-        arraySocios.push(elem);
-    }
-
-    return arraySocios;
-}
 
 /**
  * funcion que devuelve el ultimo id 
@@ -40,9 +36,9 @@ function nuevoID(){
     let nuevoIdFormateado = "";
 
     if (numero < 10) {
-        nuevoIdFormateado = "SOC-00" + numero;
+        nuevoIdFormateado = "SOC-000" + numero;
     } else if (numero < 100) {
-        nuevoIdFormateado = "SOC-0" + numero;
+        nuevoIdFormateado = "SOC-00" + numero;
     } else {
         nuevoIdFormateado = "SOC-" + numero;
     }
@@ -50,27 +46,24 @@ function nuevoID(){
     return nuevoIdFormateado;
 }
 
-/**
- * devuelve true o false segun si el dni es valido o no
- * @returns boolean
- */
 function validacionDNI(){
     const re_dni = /^\d{8}[A-Z]$/;
-
     let dniValido = true;
+    
+    let valorDni = dniNuevoSocio.value.toUpperCase();
 
-    if(!re_dni.test(dniNuevoSocio)){
+    if(!re_dni.test(valorDni)){
         dniValido = false;
     }
 
     for (const elem of listaSociosActuales) {
-        if(dniNuevoSocio.value === elem.dni){
+        if(valorDni === elem.dni){
             dniValido = false;
         }
     }
 
-    let numero = parseInt(dni.substring(0, 8));
-    let letraUsuario = dni.substring(8, 9).toUpperCase();
+    let numero = parseInt(valorDni.substring(0, 8), 10);
+    let letraUsuario = valorDni.substring(8, 9);
 
     let letrasValidas = "TRWAGMYFPDXBNJZSQVHLCKE";
     let resto = numero % 23;
@@ -81,7 +74,6 @@ function validacionDNI(){
     }
 
     return dniValido;
-
 }
 
 
@@ -162,7 +154,50 @@ function validacionFechaNacimiento(){
 }
 
 
+function validacionActividades() {
+    let alMenosUna = true;
+    
+    const checkboxesMarcados = document.querySelectorAll('input[name="actividad"]:checked');
+
+    if (checkboxesMarcados.length === 0) {
+        alMenosUna = false;
+    }
+
+    return alMenosUna;
+}
+
+function formateaFechaNacimiento(){
+    let partes = inFechaNac.value.split("/");
+
+    return partes[2] + "-" + partes[1] + "-" + partes[0];
+}
+
+function fechaAltaHoy(){
+    let hoy = new Date();
+
+    let dia = hoy.getDate();
+    let mes = hoy.getMonth() + 1;
+    let anio = hoy.getFullYear();
+
+    if (dia < 10) {
+        dia = "0" + dia;
+    }
+
+    if (mes < 10) {
+        mes = "0" + mes;
+    }
+
+    return anio + "-" + mes + "-" + dia;
+}
+
+
 function insertarSocio(){
+
+    if(!listaSociosActuales){
+        errorInsercion.innerHTML = "Abre esta ventana desde el botón Dar de Alta Socio del listado";
+        return;
+    }
+
     let cadenaErrores = "";
     let socioValido = true;
     let socioNuevo = null;
@@ -204,24 +239,55 @@ function insertarSocio(){
         socioValido = false;
     }
 
+    if(!validacionActividades()){
+        cadenaErrores += "Tiene que haber al menos una actividad seleccionada<br>";
+        socioValido = false;
+    }
+
+    if(inCuota.value === "" || Number(inCuota.value) <= 0){
+        cadenaErrores += "Cuota no válida<br>";
+        socioValido = false;
+    }
+
     if(socioValido){
+
+        //Array vacío para guardar las actividades seleccionadas
+        let actividadesSeleccionadas = [];
+        const checkboxesMarcados = document.querySelectorAll('input[name="actividad"]:checked');
+
+        for (const chk of checkboxesMarcados) {
+            actividadesSeleccionadas.push(chk.value);
+        }
+
+        let idGenerado = nuevoID();
+
         socioNuevo = {
-            id: nuevoID(),
+            id: idGenerado,
             nombre: nombreNuevoSocio.value,
-            apellidos: "Gomez Lopez",
-            dni: "25619590M",
-            email: "natalia.gomez@gmail.es",
-            telefono: "640156383",
-            fechaNacimiento: "2005-03-23",
-            fechaAlta: "2023-07-02",
-            actividades: ["natación", "yoga"],
-            cuota: 40
+            apellidos: inApellidos.value,
+            dni: dniNuevoSocio.value.toUpperCase(),
+            email: inEmail.value,
+            telefono: inTel.value,
+            fechaNacimiento: formateaFechaNacimiento(),
+            fechaAlta: fechaAltaHoy(),
+            actividades: actividadesSeleccionadas,
+            cuota: Number(inCuota.value)
         }
         listaSociosActuales.push(socioNuevo);
+        window.opener.filtroFinal();
+
+        errorInsercion.innerHTML = "Socio "+nombreNuevoSocio.value+" dado de alta con id "+idGenerado;
     }else{
         errorInsercion.innerHTML = cadenaErrores;
     }
 
-    return listaSociosActuales;
 
+}
+
+/*Llamada a funciones*/
+
+const btInsertarSocio = document.getElementById("btInsertarSocio");
+
+if(btInsertarSocio){
+    btInsertarSocio.addEventListener("click", insertarSocio);
 }

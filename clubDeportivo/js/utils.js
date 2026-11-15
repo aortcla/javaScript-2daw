@@ -1,3 +1,16 @@
+/*copia del array de socios sobre la que vamos a trabajar*/
+function recorreSocios(){
+    let arraySocios = [];
+
+    for (const elem of socios) {
+        arraySocios.push(elem);
+    }
+
+    return arraySocios;
+}
+
+var listaPrincipal = recorreSocios();
+
 /**
  * Funcion que devuelve la fecha de hoy en un formato especifico
  */
@@ -183,11 +196,11 @@ function sinTildes(texto){
 function filtroFinal(){
     let cadena =  sinTildes(inBuscarSocio.value.toLowerCase().trim());
     let actividadSeleccionada = sinTildes(actividades.value.toLowerCase());
-    let nuevoArray = [];
     let cadenaActividades = "";
     let orden = sinTildes(ordenSeleccionado.value);
+    let nuevoArray = [];
 
-    for (const elem of listaSociosActuales) {
+    for (const elem of listaPrincipal) {
         cadenaActividades = "";
         for (const actividadesSocios of elem.actividades) {
             cadenaActividades += actividadesSocios; 
@@ -258,7 +271,7 @@ function pantallaCompleta(){
 function buscaSocioDNI(dni){
     let soc = null;
 
-    for (const elem of listaSociosActuales) {
+    for (const elem of listaPrincipal) {
         if(elem.dni.toLocaleLowerCase().trim() === dni.toLocaleLowerCase().trim())
             soc = elem;
     }
