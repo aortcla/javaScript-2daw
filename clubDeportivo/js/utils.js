@@ -187,7 +187,7 @@ function filtroFinal(){
     let cadenaActividades = "";
     let orden = sinTildes(ordenSeleccionado.value);
 
-    for (const elem of socios) {
+    for (const elem of listaSociosActuales) {
         cadenaActividades = "";
         for (const actividadesSocios of elem.actividades) {
             cadenaActividades += actividadesSocios; 
@@ -258,7 +258,7 @@ function pantallaCompleta(){
 function buscaSocioDNI(dni){
     let soc = null;
 
-    for (const elem of socios) {
+    for (const elem of listaSociosActuales) {
         if(elem.dni.toLocaleLowerCase().trim() === dni.toLocaleLowerCase().trim())
             soc = elem;
     }

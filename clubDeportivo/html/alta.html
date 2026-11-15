@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta de Socio - Club Deportivo</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/data.js"></script>
+    <script src="../js/altasocio.js" defer></script>
 </head>
 <body>
 
@@ -12,9 +14,6 @@
         <div class="header-title">
             <h1>Club Deportivo</h1>
             <p>Registro de Nuevos Socios</p>
-        </div>
-        <div>
-            <a href="../index.html" class="btn-secondary">← Volver al Listado</a>
         </div>
     </header>
 
@@ -82,7 +81,7 @@
 
                 <button type="submit" class="btn-primary btn-block">Dar de Alta</button>
             </form>
-            <div id="success-alert" class="success-alert hidden">Socio dado de alta correctamente.</div>
+            <p id="errorInsercion"></p>
         </section>
     </main>
 
