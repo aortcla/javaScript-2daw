@@ -190,6 +190,17 @@ function fechaAltaHoy(){
     return anio + "-" + mes + "-" + dia;
 }
 
+//validacion de cuotas
+function validarCuota(){
+    const re_cuota = /^\d{1-3}\[,.]\d{1-2}$/;
+
+    if(re_cuota.test(inCuota.value)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 
 function insertarSocio(){
 
@@ -244,10 +255,11 @@ function insertarSocio(){
         socioValido = false;
     }
 
-    if(inCuota.value === "" || Number(inCuota.value) <= 0){
+    //validacion de cuota comentada porque la funcion no va bien
+    /*if(!validarCuota()){
         cadenaErrores += "Cuota no válida<br>";
         socioValido = false;
-    }
+    }*/
 
     if(socioValido){
 

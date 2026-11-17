@@ -111,7 +111,16 @@ function edad(fechaNacimiento){
 }
 
 /**
+ * No me sale
+ * funcion que calcula la antiguedad de un socio desde el dia que se dio de alta
+ */
+//function getAntiguedad(fechaAlta){}
+
+
+/**
  * Funcion que rellena la taba del index con el array de socios de data
+ * intento añadir la antiguedad pero el metodo estará mal y no me lo muestra 
+ * asi que lo borro para que se muestre lo demas
  */
 function mostrarSocios(lista = []){
     let cadena = "";
@@ -246,6 +255,9 @@ function filtroFinal(){
             return new Date(b.fechaNacimiento) - new Date(a.fechaNacimiento);
         } else if (orden === "antiguos") {
             return new Date(a.fechaAlta) - new Date(b.fechaAlta);
+        }else if(orden === "cuota"){
+            //ordena de mayor a menor cuota
+            return b.cuota - a.cuota;
         }
         return 0;
     });
@@ -410,6 +422,7 @@ function fichaSocio(){
                                 "Fecha de Nacimiento: "+fechaNacFormateada+"<br>"+
                                 "Fecha de alta: "+fechaAltaFormateada+"<br>"+
                                 "Días para su proximo cumpleaños: "+diasCumpleaños+"<br>"+
+                                "Curiosidad: <br>"+
                                 "Actividades: "+actYCuota;
 
     }else{

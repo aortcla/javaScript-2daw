@@ -17,7 +17,6 @@ function datos(){
     let numSocios = 0;
     let ingresosTotales = 0;
     let cuotaMedia = 0;
-    let hayMenores = false;
     let todosConActividad = true;
 
     for (const elem of listaStats) {
@@ -34,7 +33,6 @@ function datos(){
     cadena = "Numero de socios: " + numSocios + "<br>" +
             "Ingresos mensuales: " + ingresosTotales.toFixed(2) + "€<br>" +
             "Cuota media: " + cuotaMedia.toFixed(2) + "€<br>" +
-            "Hay socios menores de edad: " + (hayMenores ? "Sí" : "No") + "<br>" +
             "Todos los socios tienen actividad: " + (todosConActividad ? "Sí" : "No") + "<br>";
 
     return cadena;
